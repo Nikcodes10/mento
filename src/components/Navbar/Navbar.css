@@ -1,0 +1,37 @@
+.navbar__encloser {
+    height: 75px;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+}
+.navbar__main {
+    width: 50%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar__main > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left:34px;
+}
+.navbar__main > div > h3 {
+    margin-left: 10px;
+}
+.navbar__main > ul > li {
+    display: inline;
+    margin-right: 34px;
+    color: gray;
+    font-size: 14px;
+    list-style: none;
+}
+.navbar__main > ul > li > a:hover {
+    text-decoration: underline;
+}
+.navbar__main > div > span {
+    height: 30px;
+    min-width: 30px;
+    background-color: blueviolet;
+}

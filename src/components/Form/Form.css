@@ -1,0 +1,54 @@
+.form__encloser {
+    padding: 20px 90px;
+    width: 50%;
+}
+.form__encloser > section > h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+.form__main {
+    padding: 40px 0;
+}
+.form__formField {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 55px;
+}
+
+.form__formField:last-of-type {
+    height: 140px;
+}
+
+.form__checkboxes {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
+    padding-right: 80px;
+    
+}
+.form__checkbox {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-top: 10px;
+   
+}
+.form__checkbox > input {
+    width: fit-content;
+    height: fit-content;
+    margin-right: 10px;
+    margin-top: 8px;
+}
+
+.form__main > form > button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    margin-top: 30px;
+}
