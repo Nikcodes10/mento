@@ -1,6 +1,6 @@
 .navbar__encloser {
     height: 75px;
-    background-color: #f1f1f1;
+    background-color: black;
     display: flex;
     align-items: center;
 }
@@ -19,13 +19,15 @@
 }
 .navbar__main > div > h3 {
     margin-left: 10px;
+    color: white;
 }
 .navbar__main > ul > li {
     display: inline;
-    margin-right: 34px;
-    color: gray;
+    margin-right: 42px;
+    color: white;
     font-size: 14px;
     list-style: none;
+    position: relative;
 }
 .navbar__main > ul > li > a:hover {
     text-decoration: underline;
@@ -34,4 +36,83 @@
     height: 30px;
     min-width: 30px;
     background-color: blueviolet;
+}
+
+.navbar__hamburger {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    background-color: white;
+    display: none;
+}
+.navbar__hamburger > span {
+    display: block;
+    height: 5px;
+    width: 100%;
+    background-color: black;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.navbar__hamburger:hover {
+    opacity: 0.7;
+}
+
+.navbar__arrow {
+    position: absolute;
+    width: 12px;
+    right: 0;
+    margin-top: 4px;
+    margin-right: -21px;
+    cursor: pointer;
+}
+.navbar__arrow:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width:1170px) {
+    .navbar__encloser {
+        justify-content: space-between;
+    }
+    .navbar__main {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .navbar__encloser {
+        justify-content: space-between;
+    }
+    .navbar__main {
+        position: relative;
+    }
+    .navbar__main > ul {
+        position: absolute;
+        right: 0px;
+        top: 52px;
+        background-color: #f1f1f1;
+        width: 100%;
+    }
+    .navbar__main > ul > li {
+        display: block;
+        margin-right: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: right;
+        color: black;
+        border-bottom: 2px solid white;
+        letter-spacing: 0.1cm;
+    }
+    .navbar__hamburger {
+        display: block;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .navbar__main > div {
+        margin: 0px;
+    }
+    .navbar__hamburger {
+        margin-right: 0;
+    }
 }

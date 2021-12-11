@@ -1,5 +1,12 @@
 import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 import './Footer.css';
+import facebook from '../../assets/facebook.svg';
+import twitter from '../../assets/twitter.svg';
+import linkedin from '../../assets/linkedin.svg';
+import instagram from '../../assets/instagram.svg';
+import github from '../../assets/github.svg';
+import copyright from '../../assets/copyright.svg';
 
 export default function Footer() {
     return(
@@ -7,11 +14,13 @@ export default function Footer() {
         <div className='footer__encloser'>
             <section>
                 <div className='footer__info'>
-                    <span></span>
-                    <h1>Untitled UI</h1>
+                    <span>
+                        <img src={logo} alt="logo"/>
+                    </span>
+                    <h3>Mento Inc</h3>
                 </div>
                 <p>
-                    Design amazing Nonsense that create more happiness in the world!
+                    Your favourite platform to take your projects to the next level
                 </p>
             </section>
             <main>
@@ -52,7 +61,7 @@ export default function Footer() {
                         <li><Link to="/">Linkedin</Link></li>
                         <li><Link to="/">Facebook</Link></li>
                         <li><Link to="/">Github</Link></li>
-                        <li><Link to="/">AngelList</Link></li>
+                        <li><Link to="/">Instagram</Link></li>
                     </ul>
                 </section>
                 <section className='footer__links'>
@@ -68,25 +77,32 @@ export default function Footer() {
             </main>
         </div>
         <section className='footer__copyright'>
-                <h5>@2077 Untitled UI. All rights reserved.</h5>
+                <h5><span><img src={copyright} alt="copyright"/></span>2021 Mento Inc. All rights reserved.</h5>
                 <ul className='footer__icons'>
                     <li>
-                        <span></span>
+                        <span>
+                            <img src={facebook} alt="facebook"/>
+                        </span>
                     </li>
                     <li>
-                        <span></span>
+                        <span>
+                            <img src={linkedin} alt="linkedin"/>
+                        </span>
                     </li>
                     <li>
-                        <span></span>
+                        <span>
+                        <img src={instagram} alt="insta"/>
+                        </span>
                     </li>
                     <li>
-                        <span></span>
+                        <span>
+                        <img src={github} alt="github"/>
+                        </span>
                     </li>
                     <li>
-                        <span></span>
-                    </li>
-                    <li>
-                        <span></span>
+                        <span>
+                        <img src={twitter} alt="twitter"/>
+                        </span>
                     </li>
                 </ul>
             </section>

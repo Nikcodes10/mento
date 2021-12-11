@@ -1,5 +1,18 @@
 .jumbotron__encloser {
     width: 50%;
-    background: url('../../assets/sample.jpg') no-repeat center center;
+    background: url('../../assets/cover.jpg') no-repeat;
     background-size: cover;
+    background-position: center center;
+}
+@media screen and (max-width:1150px) {
+    .jumbotron__encloser {
+        background: url('../../assets/teaching.jpg') no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+@media screen and (max-width:850px) {
+    .jumbotron__encloser {
+        display: none;
+    }
 }

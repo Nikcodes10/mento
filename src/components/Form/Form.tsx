@@ -1,69 +1,184 @@
+import { useRef, useState } from 'react';
 import './Form.css';
 
 export default function Form() {
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [description, setDescription] = useState('');
+    const [phone, setPhone] = useState('');
+    const [services, setServices] = useState([]);
+
+    const [phoneErr, setPhoneErr] = useState('');
+    const [emailErr, setEmailErr] = useState('');
+    const [nameErr, setNameErr] = useState('');
+    const [descErr, setDescErr] = useState('');
+
+    const form : any = useRef()
+
+    const handleSubmit = async (e :any) => {
+        e.preventDefault();
+        if(phone.length < 10) {
+            setPhoneErr('Please enter a valid phone number!');
+            return;
+        }
+        if(!email.includes('@') || !email.includes('.') || email.startsWith('@') || email.startsWith('.') || email.endsWith('@') || email.endsWith('.')) {
+            setEmailErr('Please enter a valid email!');
+            return;
+        }
+        const body = new URLSearchParams({
+            name,
+            email,
+            phone,
+            description
+        })
+        body.append('services', JSON.stringify(services))
+    
+        try {
+            const res = await fetch('https://iksinterns.herokuapp.com/api/post', {
+                method:'POST',
+                mode:"cors",
+                body,
+                headers: {
+                    'Content-Type':'application/x-www-form-urlencoded',
+                },
+            })
+            if(res.status === 201) {
+                alert("Success!");
+                form.current.reset();
+                return;
+            }
+        }   catch(e) {
+            console.log(e)
+        }
+        alert("failed.. try again!");
+    }
+
+    const handleName = (e: any) => {
+        if(!e.target.value.length) {
+            setNameErr('Please enter your name!');
+        } else {
+            setNameErr('');
+        }
+        setName(e.target.value);
+    }
+
+    const handleEmail = (e: any) => {
+        if(!e.target.value.length) {
+            setEmailErr('Please enter your email!');
+        } else {
+            setEmailErr('');
+        }
+        setEmail(e.target.value);
+    }
+
+    const handlePhone = (e: any) => {
+        if(e.target.value.length > 10) {
+            setPhoneErr('Phone number cannot exceed 10 digits')
+        } else if(!e.target.value.length) {
+            setPhoneErr('Please enter your phone number!');
+        } 
+        else {
+            setPhoneErr('');
+        }
+        setPhone(e.target.value);
+    }
+
+    const handleDescription = (e: any) => {
+        if(!e.target.value.length) {
+            setDescErr('Please enter a description!');
+        } else {
+            setDescErr('');
+        }
+        setDescription(e.target.value);
+    }
+
+    const handleServices = (val: string) => (e: any) => {
+        if((services as Array<String>).includes(val)) {
+            const arr = services.filter(el => {
+                return el!==val;
+            })
+            setServices(arr);
+        } else {
+            setServices([...services, val as never])
+        }
+    }
+
+    const handleDisabled = () => {
+        if(nameErr || emailErr || phoneErr || descErr || !name || !email || !description || !phone) 
+            return true;
+        else
+            return false;
+    }
+
     return(
         <div className='form__encloser'>
             <section>
-                <h1>Let&apos;s level up your brand together</h1>
-                <p>You can reach us anytime via someone@somewhere.domain</p>
+                <h1>You&apos;ve got questions? We&apos;ve got <span>mento</span>rs!</h1>
+                <p>Fill in your queries and get them resolved by our experts.</p>
             </section>
             <main className='form__main'>
-                <form name='message'>
+                <form name='message' onSubmit={handleSubmit} ref={form}>
                     <div className='form__formField'>
+                        <h4>{nameErr}</h4>
                         <label htmlFor='name'>
                             Name
                         </label>
-                        <input id='name' name='name' type="text" placeholder='Your name'/>
+                        <input spellCheck="false" style={{'outlineColor': nameErr ? 'crimson':'black'}} onChange={handleName} id='name' name='name' type="text" placeholder='Your Name'/>
                     </div>
                     <div className='form__formField'>
+                        <h4>{emailErr}</h4>
                         <label htmlFor='email'>
                             Email
                         </label>
-                        <input id='email' name='email' type="email" placeholder='someone@somewhere.domain'/>
+                        <input spellCheck="false" style={{'outlineColor': emailErr ? 'crimson':'black'}} onChange={handleEmail} id='email' name='email' type="email" placeholder='email@gmail.com'/>
                     </div>
                     <div className='form__formField'>
+                        <h4>{phoneErr}</h4>
                         <label htmlFor='phone'>
                             Phone
                         </label>
-                        <input id='phone' name='phone' type="phone" placeholder='+91 7652341568'/>
+                     
+                        <input spellCheck="false" style={{'outlineColor': phoneErr ? 'crimson':'black'}} onChange={handlePhone} id='phone' name='phone' type="phone" placeholder='+91 7652341568'/>
                     </div>
                     <div className='form__formField'>
+                        <h4>{descErr}</h4>
                         <label htmlFor='help'>
                             How can we help?
                         </label>
-                       <textarea name="help" id="help" rows={6} placeholder='Briefly decribe'></textarea>
+                       <textarea spellCheck="false" style={{'outlineColor': descErr ? 'crimson':'black'}} onChange={handleDescription} name="help" id="help" rows={5} placeholder='Briefly decribe your query ...'></textarea>
                     </div>
                     <section>
-                        <label>Services</label>
+                        <label>Domain</label>
                         <br/>
                         <div className='form__checkboxes'>
                             <div className='form__checkbox'>
                                 <label htmlFor='webdesign'>Web Design</label>
-                                <input type="checkbox" name="webdesign" id="webdesign"/>
+                                <input onChange={handleServices('Web Design')} type="checkbox" name="webdesign" id="webdesign"/>
                             </div>
                             <div className='form__checkbox'>
                                 <label htmlFor='contentcreation'>Content Creation</label>
-                                <input type="checkbox" name="contentcreation" id="contentcreation"/>
+                                <input onChange={handleServices('Content Creation')} type="checkbox" name="contentcreation" id="contentcreation"/>
                             </div>
                             <div className='form__checkbox'>
                                 <label htmlFor='uxdesign'>UX Design</label>
-                                <input type="checkbox" name="uxdesign" id="uxdesign"/>
+                                <input onChange={handleServices('UX Design')} type="checkbox" name="uxdesign" id="uxdesign"/>
                             </div>
                             <div className='form__checkbox'>
                                 <label htmlFor='strategy'>Strategy and Consulting</label>
-                                <input type="checkbox" name="strategy" id="strategy"/>
+                                <input onChange={handleServices('Strategy and Consulting')} type="checkbox" name="strategy" id="strategy"/>
                             </div>
                             <div className='form__checkbox'>
                                 <label htmlFor='research'>User Research</label>
-                                <input type="checkbox" name="research" id="research"/>
+                                <input onChange={handleServices('User Research')} type="checkbox" name="research" id="research"/>
                             </div>
                             <div className='form__checkbox'>
                                 <label htmlFor='other'>Other</label>
-                                <input type="checkbox" name="other" id="other"/>
+                                <input onChange={handleServices('Other')} type="checkbox" name="other" id="other"/>
                             </div>
                         </div>
                     </section>
-                    <button type="button">Send Message</button>
+                    <button disabled={handleDisabled()} type="submit">Send Message</button>
                 </form>
             </main>
         </div>
