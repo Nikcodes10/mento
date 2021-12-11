@@ -1,4 +1,4 @@
-# Task 2
+# Task 2 - IKS Web Team
 
 Develop a website with the given design as reference and submit form details to the api given.
 
@@ -28,4 +28,4 @@ Develop a website with the given design as reference and submit form details to 
 
 ### Hosted
 
-The app has been hosted using vercel at: [https://mento-iks.vercel.app](https://mento-iks.vercel.app).
+The website has been hosted at: [https://mento-iks.vercel.app](https://mento-iks.vercel.app).
