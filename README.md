@@ -2,21 +2,21 @@
 
 Develop a website with the given design as reference and submit form details to the api given.
 
-## Tech Stack used
+## Tech Stack used:
 
 - html
 - css
 - typescript
 - react
 
-## Steps to run locally
+## Steps to run locally:
 
 - Clone the repo and `cd` into the root directory
 - Run `npm install` to install the necessary node_modules
 - Run `npm start`
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### Notables
+### Notables:
 
 - ui according to the design
 - form validation
@@ -26,6 +26,6 @@ Develop a website with the given design as reference and submit form details to 
 - no libraries used for ui/css
 - made with love using react and typescript
 
-### Hosted
+### Hosted:
 
 The website has been hosted at: [https://mento-iks.vercel.app](https://mento-iks.vercel.app).
