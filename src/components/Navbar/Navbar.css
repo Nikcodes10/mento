@@ -107,6 +107,9 @@
         border-bottom: 2px solid white;
         letter-spacing: 0.1cm;
     }
+    .navbar__arrow {
+        display: none;
+    }
     .navbar__hamburger {
         display: block;
     }
