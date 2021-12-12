@@ -14,6 +14,8 @@ export default function Form() {
     const [nameErr, setNameErr] = useState('');
     const [descErr, setDescErr] = useState('');
 
+    const [loading, setLoading] = useState(false);
+
     const form : any = useRef()
 
     const handleSubmit = async (e :any) => {
@@ -26,6 +28,7 @@ export default function Form() {
             setEmailErr('Please enter a valid email!');
             return;
         }
+        setLoading(true);
         const body = new URLSearchParams({
             name,
             email,
@@ -46,12 +49,14 @@ export default function Form() {
             if(res.status === 201) {
                 alert("Success!");
                 form.current.reset();
+                setLoading(false);
                 return;
             }
         }   catch(e) {
             console.log(e)
         }
         alert("failed.. try again!");
+        setLoading(false);
     }
 
     const handleName = (e: any) => {
@@ -105,7 +110,7 @@ export default function Form() {
     }
 
     const handleDisabled = () => {
-        if(nameErr || emailErr || phoneErr || descErr || !name || !email || !description || !phone) 
+        if(loading || nameErr || emailErr || phoneErr || descErr || !name || !email || !description || !phone) 
             return true;
         else
             return false;
@@ -178,6 +183,7 @@ export default function Form() {
                             </div>
                         </div>
                     </section>
+                    <h4><span hidden={!loading}>LOADING...</span></h4>
                     <button disabled={handleDisabled()} type="submit">Send Message</button>
                 </form>
             </main>
