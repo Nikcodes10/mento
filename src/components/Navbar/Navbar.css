@@ -70,6 +70,10 @@
     opacity: 0.8;
 }
 
+.navbar__main > ul > li:last-of-type {
+    margin-right: 5px;
+}
+
 @media screen and (max-width:1170px) {
     .navbar__encloser {
         justify-content: space-between;
