@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import './Form.css';
 
 export default function Form() {
-
+    
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
@@ -47,7 +47,7 @@ export default function Form() {
                 },
             })
             if(res.status === 201) {
-                alert("Success!");
+                alert("Query submission success!");
                 form.current.reset();
                 setLoading(false);
                 return;
@@ -55,13 +55,13 @@ export default function Form() {
         }   catch(e) {
             console.log(e)
         }
-        alert("failed.. try again!");
+        alert("Submission failed.. try again!");
         setLoading(false);
     }
 
     const handleName = (e: any) => {
         if(!e.target.value.length) {
-            setNameErr('Please enter your name!');
+            setNameErr('Please enter your name');
         } else {
             setNameErr('');
         }
@@ -70,7 +70,7 @@ export default function Form() {
 
     const handleEmail = (e: any) => {
         if(!e.target.value.length) {
-            setEmailErr('Please enter your email!');
+            setEmailErr('Please enter your email');
         } else {
             setEmailErr('');
         }
@@ -78,10 +78,13 @@ export default function Form() {
     }
 
     const handlePhone = (e: any) => {
-        if(e.target.value.length > 10) {
+        if(!/^[0-9]*$/.test(e.target.value)) {
+            setPhoneErr('Please enter a valid phone number')
+        }
+        else if(e.target.value.length > 10) {
             setPhoneErr('Phone number cannot exceed 10 digits')
         } else if(!e.target.value.length) {
-            setPhoneErr('Please enter your phone number!');
+            setPhoneErr('Please enter your phone number');
         } 
         else {
             setPhoneErr('');
@@ -91,7 +94,7 @@ export default function Form() {
 
     const handleDescription = (e: any) => {
         if(!e.target.value.length) {
-            setDescErr('Please enter a description!');
+            setDescErr('Please enter a description');
         } else {
             setDescErr('');
         }
@@ -144,7 +147,7 @@ export default function Form() {
                             Phone
                         </label>
                      
-                        <input spellCheck="false" style={{'outlineColor': phoneErr ? 'crimson':'black'}} onChange={handlePhone} id='phone' name='phone' type="phone" placeholder='+91 7652341568'/>
+                        <input spellCheck="false" style={{'outlineColor': phoneErr ? 'crimson':'black'}} onChange={handlePhone} id='phone' name='phone' type="tel" placeholder='+91 7652341568'/>
                     </div>
                     <div className='form__formField'>
                         <h4>{descErr}</h4>
@@ -183,7 +186,7 @@ export default function Form() {
                             </div>
                         </div>
                     </section>
-                    <h4><span hidden={!loading}>LOADING...</span></h4>
+                    <h4><span hidden={!loading}>Submitting...</span></h4>
                     <button disabled={handleDisabled()} type="submit">Send Message</button>
                 </form>
             </main>
