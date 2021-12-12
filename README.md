@@ -18,13 +18,13 @@ Develop a website with the given design as reference and submit form details to 
 
 ### Notables:
 
-- ui according to the design
-- form validation
-- responsive
-- pleasing to the eye
-- modular and scalable code
-- no libraries used for ui/css
-- made with love using react and typescript
+- UI according to the design
+- Form validation
+- Responsive
+- Pleasing to the eye
+- Modular and scalable code
+- No libraries used for ui/css
+- Made with love using React and Typescript
 
 ### Hosted:
 
